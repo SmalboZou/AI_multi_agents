@@ -1,0 +1,272 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 自定义基础样式 */
+@layer base {
+  * {
+    @apply border-gray-200 dark:border-gray-800;
+  }
+  
+  body {
+    @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* 滚动条样式 */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-800;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-blue-500;
+  }
+  
+  /* 选择文本样式 */
+  ::selection {
+    @apply bg-blue-500/20 text-blue-600 dark:text-blue-400;
+  }
+  
+  /* 焦点样式 */
+  :focus-visible {
+    @apply outline-none ring-2 ring-blue-500 ring-offset-2 ring-offset-white dark:ring-offset-gray-900;
+  }
+}
+
+/* 自定义组件样式 */
+@layer components {
+  /* 渐变文字效果 */
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent;
+  }
+  
+  /* 毛玻璃效果 */
+  .glass {
+    @apply bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50;
+  }
+  
+  /* 悬浮卡片效果 */
+  .hover-card {
+    @apply transition-all duration-300 ease-out hover:transform hover:-translate-y-2 hover:shadow-xl;
+  }
+  
+  /* 发光效果 */
+  .glow {
+    @apply shadow-2xl;
+  }
+  
+  /* 按钮基础样式 */
+  .btn-base {
+    @apply inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 disabled:pointer-events-none disabled:opacity-50;
+  }
+  
+  /* 主要按钮 */
+  .btn-primary {
+    @apply btn-base bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 hover:shadow-lg hover:scale-105 active:scale-95;
+  }
+  
+  /* 次要按钮 */
+  .btn-secondary {
+    @apply btn-base bg-transparent text-blue-600 dark:text-blue-400 border-2 border-blue-500 hover:bg-blue-500 hover:text-white hover:shadow-lg hover:scale-105 active:scale-95;
+  }
+  
+  /* 文本按钮 */
+  .btn-text {
+    @apply btn-base bg-transparent text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 hover:bg-blue-500/10;
+  }
+  
+  /* 卡片样式 */
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg;
+  }
+  
+  /* 标签样式 */
+  .tag {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20;
+  }
+  
+  /* 输入框样式 */
+  .input {
+    @apply w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors;
+  }
+}
+
+/* 自定义工具类 */
+@layer utilities {
+  /* 文本渐变动画 */
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+  
+  @keyframes gradient {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  /* 打字机效果 */
+  .typewriter {
+    overflow: hidden;
+    border-right: 2px solid;
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+  
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  @keyframes blink-caret {
+    from, to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: currentColor;
+    }
+  }
+  
+  /* 粒子动画背景 */
+  .particles {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .particles::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(2px 2px at 20px 30px, rgba(59, 130, 246, 0.3), transparent),
+                      radial-gradient(2px 2px at 40px 70px, rgba(16, 185, 129, 0.3), transparent),
+                      radial-gradient(1px 1px at 90px 40px, rgba(59, 130, 246, 0.5), transparent),
+                      radial-gradient(1px 1px at 130px 80px, rgba(16, 185, 129, 0.5), transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: float 20s linear infinite;
+    pointer-events: none;
+  }
+  
+  /* 响应式隐藏/显示 */
+  .mobile-only {
+    @apply block md:hidden;
+  }
+  
+  .desktop-only {
+    @apply hidden md:block;
+  }
+  
+  .tablet-only {
+    @apply hidden md:block lg:hidden;
+  }
+  
+  /* 响应式容器 */
+  .container-responsive {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .container-narrow {
+    @apply w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* 响应式网格 */
+  .grid-responsive {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6;
+  }
+  
+  .grid-auto-fit {
+    @apply grid gap-4 sm:gap-6;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  
+  /* 响应式文字大小 */
+  .text-responsive-xs {
+    @apply text-xs sm:text-sm;
+  }
+  
+  .text-responsive-sm {
+    @apply text-sm sm:text-base;
+  }
+  
+  .text-responsive-base {
+    @apply text-base sm:text-lg;
+  }
+  
+  .text-responsive-lg {
+    @apply text-lg sm:text-xl md:text-2xl;
+  }
+  
+  .text-responsive-xl {
+    @apply text-xl sm:text-2xl md:text-3xl;
+  }
+  
+  .text-responsive-2xl {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  /* 响应式间距 */
+  .spacing-responsive {
+    @apply p-4 sm:p-6 lg:p-8;
+  }
+  
+  .spacing-responsive-y {
+    @apply py-8 sm:py-12 lg:py-16;
+  }
+  
+  .spacing-responsive-x {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* 移动端优化 */
+  .touch-friendly {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  .mobile-scroll {
+    @apply overflow-x-auto scrollbar-hide;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* 安全区域适配 */
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-area-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  
+  .safe-area-right {
+    padding-right: env(safe-area-inset-right);
+  }
+}
